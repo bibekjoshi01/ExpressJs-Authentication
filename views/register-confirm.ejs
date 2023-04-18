@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Confirmation</title>
+    <link rel="stylesheet" type="text/css" href="/css/register_confirm.css" />
+  </head>
+  <body>
+    <main id="container">
+      <h1>Registration Confirmation</h1>
+      <p>
+        Please scan the following QR code using Google Authenticator or another
+        2FA app:
+      </p>
+      <img src="<%= qrCodeUrl %>" alt="QR Code" />
+      <p>Thank you for registering with our website.</p>
+      <a href="/login"><button>Login Page</button></a>
+    </main>
+  </body>
+</html>

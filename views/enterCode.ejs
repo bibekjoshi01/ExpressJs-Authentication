@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mail Sent</title>
+    <link rel="stylesheet" type="text/css" href="css/email_confirm.css" />
+  </head>
+
+  <body>
+    <h1>Check your email</h1>
+    <% if (message) { %>
+    <p><%= message %></p>
+    <% } %>
+    <div class="container">
+      <img
+        src="https://imgs.search.brave.com/J_9bTCk_lAiCc8No3Zet9Y-dgvprrUzcpeyCkW2CbHg/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9sb2dv/cy13b3JsZC5uZXQv/d3AtY29udGVudC91/cGxvYWRzLzIwMjAv/MTEvR21haWwtTG9n/by0yMDIwLXByZXNl/bnQuanBn"
+      />
+    </div>
+    <div class="container">
+      <button>
+        <a href="https://mail.google.com/mail/u/1/#inbox">Go to my email</a>
+      </button>
+    </div>
+  </body>
+</html>

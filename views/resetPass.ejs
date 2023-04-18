@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset_pass.css" />
+    <title>Reset Password</title>
+  </head>
+
+  <body>
+    <div class="form-container">
+      <h1>Reset Password</h1>
+
+      <form method="post" action="/reset-password">
+        <input type="hidden" name="token" value="<%= token %>" />
+        <div class="ourForm">
+          <label for="password">New Password</label>
+          <input type="password" name="password" required />
+
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" name="confirmPassword" required />
+
+          <button type="submit">Reset Password</button>
+        </div>
+      </form>
+    </div>
+
+    <% if (message) { %>
+    <script>
+      var message = "<%= message %>";
+    </script>
+    <% } %>
+
+    <script>
+      if (message) {
+        Swal.fire({
+          title: message,
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" type="text/css" href="css/register.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <title>User Registration</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="form-container">
+      <div class="card">
+        <h1>Register Your Account</h1>
+        <form action="/register" method="POST">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required />
+
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required />
+
+          <label for="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirm-password"
+            required
+          />
+          <div class="strengthMeter" style="margin-bottom: 10px"></div>
+          <div
+            class="g-recaptcha"
+            data-sitekey="6LcRE0ElAAAAAMbgA9mYRFf2mrJwbAk6aUGi2xNg"
+          ></div>
+          <button style="margin-top: 25px" class="register-btn" type="submit">
+            Register
+          </button>
+          <div class="links">
+            <a href="/login">Already have an account?</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      let password = document.querySelector("#password");
+      let container = document.querySelector(".strengthMeter");
+
+      password.addEventListener("input", () => {
+        updateStrengthMeter();
+      });
+
+      password.addEventListener("keyup", () => {
+        updateStrengthMeter();
+      });
+
+      function updateStrengthMeter() {
+        function strength(password) {
+          let i = 0;
+          if (password.length >= 8) {
+            i++;
+          }
+          if (/[A-Z]/.test(password) && /[a-z]/.test(password)) {
+            i += 2;
+          }
+          if (/\d/.test(password)) {
+            i++;
+          }
+          if (/[^A-Za-z0-9]/.test(password)) {
+            i += 2;
+          }
+          return i;
+        }
+
+        if (strength(password.value) <= 2 && strength(password.value) >= 1) {
+          container.innerHTML = "Weak";
+          container.classList.add("weak");
+          container.classList.remove("medium");
+          container.classList.remove("strong");
+        } else if (strength(password.value) === 0) {
+          container.innerHTML = "";
+          container.classList.remove("weak");
+          container.classList.remove("medium");
+          container.classList.remove("strong");
+        } else if (
+          strength(password.value) >= 2 &&
+          strength(password.value) <= 4
+        ) {
+          container.innerHTML = "Medium";
+          container.classList.remove("weak");
+          container.classList.add("medium");
+          container.classList.remove("strong");
+        } else {
+          container.innerHTML = "Strong";
+          container.classList.remove("weak");
+          container.classList.remove("medium");
+          container.classList.add("strong");
+        }
+      }
+    </script>
+    <% if (message) { %>
+    <script>
+      var message = "<%= message %>";
+    </script>
+    <% } %>
+
+    <script>
+      if (message) {
+        Swal.fire({
+          title: message,
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+    </script>
+  </body>
+</html>
